@@ -38,19 +38,21 @@ st.title("🎯 AI 로또 추천기")
 
 col1, col2 = st.columns(2)
 
+# 추천번호 추가 버튼
 if col1.button("로또번호 추가생성"):
     if len(st.session_state.recommendations) < 10:
         st.session_state.recommendations.append(ai_lotto_pick())
     else:
         st.warning("최대 10세트까지만 생성 가능합니다!")
 
+# 초기화 버튼
 if col2.button("초기화"):
     st.session_state.recommendations = []
 
+# 추천번호 출력
 for i, pick in enumerate(st.session_state.recommendations):
     st.write(f"**추천 {i+1}번 세트:**")
-    
-    html = "<div style='display:flex; gap:10px;'>"
+    html = "<div style='display:flex; gap:10px; justify-content:center;'>"
     for num in pick:
         color = get_color(num)
         html += f"""
@@ -59,5 +61,4 @@ for i, pick in enumerate(st.session_state.recommendations):
             align-items:center; justify-content:center;'>{num}</div>
         """
     html += "</div>"
-    
     st.markdown(html, unsafe_allow_html=True)
