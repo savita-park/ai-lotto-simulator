@@ -51,8 +51,8 @@ if col2.button("초기화"):
 
 # 추천번호 출력
 for i, pick in enumerate(st.session_state.recommendations):
-    st.write(f"**추천 {i+1}번 세트:**")
-    html = "<div style='display:flex; gap:10px; justify-content:center;'>"
+    html = f"<p><b>추천 {i+1}번 세트:</b></p>"
+    html += "<div style='display:flex; gap:10px; justify-content:center;'>"
     for num in pick:
         color = get_color(num)
         html += f"""
