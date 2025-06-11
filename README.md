@@ -1,1 +1,2 @@
-# ai-lotto-simulator
+AI 빈도 가중치를 활용한 로또 번호 추천기입니다.
+Streamlit 기반 웹앱으로 실행됩니다.
