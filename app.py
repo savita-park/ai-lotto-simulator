@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import streamlit.components.v1 as components
 
 # === AI 가중치 세팅 ===
 freq_data = {
@@ -38,18 +39,16 @@ st.title("🎯 AI 로또 추천기")
 
 col1, col2 = st.columns(2)
 
-# 추천번호 추가 버튼
 if col1.button("로또번호 추가생성"):
     if len(st.session_state.recommendations) < 10:
         st.session_state.recommendations.append(ai_lotto_pick())
     else:
         st.warning("최대 10세트까지만 생성 가능합니다!")
 
-# 초기화 버튼
 if col2.button("초기화"):
     st.session_state.recommendations = []
 
-# 추천번호 출력
+# 출력부 완전 수정
 for i, pick in enumerate(st.session_state.recommendations):
     html = f"<p><b>추천 {i+1}번 세트:</b></p>"
     html += "<div style='display:flex; gap:10px; justify-content:center;'>"
@@ -61,4 +60,6 @@ for i, pick in enumerate(st.session_state.recommendations):
             align-items:center; justify-content:center;'>{num}</div>
         """
     html += "</div>"
-    st.markdown(html, unsafe_allow_html=True)
+    
+    # 완전 HTML 엔진으로 랜더링
+    components.html(html, height=150)
